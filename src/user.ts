@@ -1,7 +1,7 @@
 import { User, Reputation } from "../generated/schema";
 import { BigInt, Address } from "@graphprotocol/graph-ts";
 import { PIBP2P, HandleDealReputation } from "../generated/PIBP2P/PIBP2P";
-import { NameService, CreateName } from "../generated/templates/NameService/NameService";
+import { NameService, CreateName } from "../generated/NameService/NameService";
 
 export function handleCreateName(event: CreateName): void {
     createUserIfNull(event.params.wallet.toHexString());
@@ -94,7 +94,7 @@ export function createUserIfNull(userId: string): void {
 }
 
 export function getNickname(walletAddress: string): string {
-    let nameService = NameService.bind(Address.fromString("0x672af58B94683cBcd2De173c5940d49Deb4cF5E6"));
+    let nameService = NameService.bind(Address.fromString("0x3e4B7f25A608b3E4df696E79d2D2CC354e6D6b8E"));
     let name = nameService.try_name(Address.fromString(walletAddress));
 
     if (!name.reverted) {
